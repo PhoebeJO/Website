@@ -13,10 +13,12 @@
     min-height: 100vh;
   }
  
-  .grid {
+  .grid_3{
     display: grid;
     gap: 8px;
     background: #5bb8f5;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
   }
  
   .box {
@@ -29,7 +31,10 @@
   .silver { background: #d0d8e0; }
  
   /* ── (b) Wide layout: ≥ 480px — 4-column grid ── */
-  .grid {
+  .grid_4 {
+    display: grid;
+    gap: 8px;
+    background: #5bb8f5;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto auto;
   }
@@ -37,11 +42,10 @@
   /* Row 1: green header spans all 4 cols */
   .box-green  { grid-column: 1 / -1; min-height: 100px; }
  
-  /* Row 2: 4 equal teal boxes */
+  /* Row 2: 3 equal teal boxes */
   .box-teal-1,
   .box-teal-2,
-  .box-teal-3,
-  .box-teal-4 { grid-column: span 1; min-height: 80px; }
+  .box-teal-3{ grid-column: span 1; min-height: 100px; }
  
   /* Row 3: 4 equal silver boxes */
   .box-silver-1,
@@ -60,8 +64,7 @@
     /* Teal boxes stack as full-width rows */
     .box-teal-1,
     .box-teal-2,
-    .box-teal-3,
-    .box-teal-4 { grid-column: 1; min-height: 50px; }
+    .box-teal-3{ grid-column: 1; min-height: 50px; }
  
     /* Silver boxes: 2-column mini grid — use subgrid workaround */
     .silver-row {
@@ -90,18 +93,16 @@
 </style>
 </head>
 <body>
- 
-<div class="grid">
-  <!-- Row 1: green -->
+<div class="grid_3">
   <div class="box green box-green"></div>
- 
   <!-- Row 2: teal × 4 -->
   <div class="box teal box-teal-1"></div>
   <div class="box teal box-teal-2"></div>
   <div class="box teal box-teal-3"></div>
-  <div class="box teal box-teal-4"></div>
- 
-  <!-- Row 3: silver × 4 -->
+
+</div>
+<div class="grid_4">
+
   <div class="silver-row">
     <div class="box silver box-silver-1"></div>
     <div class="box silver box-silver-2"></div>
