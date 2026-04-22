@@ -13,101 +13,64 @@
     min-height: 100vh;
   }
  
-  .grid_3{
-    display: grid;
-    gap: 8px;
-    background: #5bb8f5;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
-  }
- 
-  .box {
-    border-radius: 4px;
-    min-height: 60px;
-  }
- 
   .green  { background: #a8d55a; }
   .teal   { background: #5ec8c8; }
   .silver { background: #d0d8e0; }
  
-  /* ── (b) Wide layout: ≥ 480px — 4-column grid ── */
-  .grid_4 {
+  .box { border-radius: 4px; }
+ 
+  .layout {
     display: grid;
     gap: 8px;
-    background: #5bb8f5;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto auto auto;
   }
  
-  /* Row 1: green header spans all 4 cols */
-  .box-green  { grid-column: 1 / -1; min-height: 100px; }
+  .box-green { min-height: 100px; }
  
-  /* Row 2: 3 equal teal boxes */
-  .box-teal-1,
-  .box-teal-2,
-  .box-teal-3{ grid-column: span 1; min-height: 100px; }
+  /* Wide ≥ 480px */
+  .teal-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .teal-row .box { min-height: 100px; }
  
-  /* Row 3: 4 equal silver boxes */
-  .box-silver-1,
-  .box-silver-2,
-  .box-silver-3,
-  .box-silver-4 { grid-column: span 1; min-height: 70px; }
+  .silver-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .silver-row .box { min-height: 70px; }
  
-  /* ── (a) Narrow layout: < 480px — single column ── */
+  /* Narrow < 480px */
   @media (max-width: 479px) {
-    .grid {
+    .teal-row {
       grid-template-columns: 1fr;
     }
+    .teal-row .box { min-height: 50px; }
  
-    .box-green { grid-column: 1; }
- 
-    /* Teal boxes stack as full-width rows */
-    .box-teal-1,
-    .box-teal-2,
-    .box-teal-3{ grid-column: 1; min-height: 50px; }
- 
-    /* Silver boxes: 2-column mini grid — use subgrid workaround */
     .silver-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      grid-column: 1;
+      grid-template-columns: repeat(2, 1fr);
     }
-  }
- 
-  /* Silver row wrapper only visible on wide */
-  .silver-row {
-    display: contents; /* transparent wrapper on wide */
-  }
- 
-  @media (max-width: 479px) {
-    .silver-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .silver-row .box {
-      min-height: 55px;
-    }
+    .silver-row .box { min-height: 55px; }
   }
 </style>
 </head>
 <body>
-<div class="grid_3">
+ 
+<div class="layout">
   <div class="box green box-green"></div>
-  <!-- Row 2: teal × 4 -->
-  <div class="box teal box-teal-1"></div>
-  <div class="box teal box-teal-2"></div>
-  <div class="box teal box-teal-3"></div>
-
-</div>
-<div class="grid_4">
-
+ 
+  <div class="teal-row">
+    <div class="box teal"></div>
+    <div class="box teal"></div>
+    <div class="box teal"></div>
+  </div>
+ 
   <div class="silver-row">
-    <div class="box silver box-silver-1"></div>
-    <div class="box silver box-silver-2"></div>
-    <div class="box silver box-silver-3"></div>
-    <div class="box silver box-silver-4"></div>
+    <div class="box silver"></div>
+    <div class="box silver"></div>
+    <div class="box silver"></div>
+    <div class="box silver"></div>
   </div>
 </div>
  
