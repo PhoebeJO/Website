@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Image Styling Practice</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+  }
+ 
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+ 
+  /* Image 1: rounded corners, no distortion, width 33% */
+  .img-rounded {
+    width: 33vw;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 18px;
+  }
+ 
+  /* Image 2: circle, 150px diameter, border 150px */
+  .img-circle {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 3px black;
+    flex-shrink: 0;
+  }
+ 
+  /* Image 3: distorted (stretched), width 33%, height 300px */
+  .img-distorted {
+    width: 33vw;
+    height: 300px;
+    object-fit: fill; /* distortion: no object-fit: cover */
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left: rounded corners, no distortion -->
+    <img
+      class="img-rounded"
+      src="Paris.jpg"
+      alt="Eiffel Tower rounded"
+    >
+ 
+    <!-- Center: circle with border, 150px -->
+    <img
+      class="img-circle"
+      src="img_5terre.jpg"
+      alt="Circle landscape"
+    >
+ 
+    <!-- Right: distorted (object-fit: fill), width 33%, height 300px -->
+    <img
+      class="img-distorted"
+      src="Paris.jpg"
+      alt="Eiffel Tower distorted"
+    >
+  </div>
+</body>
