@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .panel-wrapper {
+    width: 496px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  /* ── Header bar ── */
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 26px 0 15px;
+    height: 35px;
+    border-bottom: 1px solid #d0d0d0;
+    background: #f0f0f0;
+  }
+
+  .panel-title {
+    font-size: 13px;
+    color: #2f2f2f;
+  }
+
+  /* Button spec: h22 / R8, bg #ffffff, outline 1px #2f2f2f */
+  .btn-info {
+    height: 22px;
+    padding: 0 18px;
+    background: #ffffff;
+    border: 1px solid #2f2f2f;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: #2f2f2f;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-info:hover { background: #2f2f2f; color: #fff; }
+
+  /* ── Image area ── */
+  .panel-image-wrap {
+    padding: 20px 26px;          /* top/bottom 20, right 26 */
+    padding-left: 20px;
+    background: #f5e9d6;         /* 預覽圖片縮圖背景 */
+  }
+
+  .panel-image-wrap img {
+    display: block;
+    width: 450px;
+    height: 240px;
+    object-fit: cover;
+  }
+
+  /* ── Info panel (expandable) ── */
+  .info-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    border-top: 1px solid #d0d0d0;
+  }
+  .info-panel.open { max-height: 300px; }
+
+  .info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 26px 0 20px;
+    height: 35px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #d0d0d0;
+  }
+  .info-title { font-size: 13px; color: #2f2f2f; }
+
+  .btn-close {
+    height: 22px;
+    padding: 0 18px;
+    background: #ffffff;
+    border: 1px solid #2f2f2f;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: #2f2f2f;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-close:hover { background: #2f2f2f; color: #fff; }
+
+  .info-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0;
+  }
+  /* Custom scrollbar */
+  .info-scroll::-webkit-scrollbar { width: 8px; }
+  .info-scroll::-webkit-scrollbar-track { background: #f0f0f0; }
+  .info-scroll::-webkit-scrollbar-thumb { background: #aaa; border-radius: 4px; }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 20px 6px;
+    background: #90ee90;         /* green rows per design */
+    border-bottom: 1px solid #78d878;
+    font-size: 13px;
+    color: #2f2f2f;
+    line-height: 1.4;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { font-weight: 500; margin-right: 4px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div class="panel-wrapper">
+
+  <!-- Collapsed preview -->
+  <div class="panel-header">
+    <span class="panel-title">預覽</span>
+    <button class="btn-info" id="btnOpen">查看資訊</button>
+  </div>
+
+  <div class="panel-image-wrap">
+    <!-- Placeholder landscape photo; swap src as needed -->
+    <img
+      src="https://www.w3schools.com/css/img_5terre.jpg"
+      alt="preview"
+    >
+  </div>
+
+  <!-- Expanded info panel -->
+  <div class="info-panel" id="infoPanel">
+    <div class="info-header">
+      <span class="info-title">預覽</span>
+      <button class="btn-close" id="btnClose">收起資訊</button>
+    </div>
+    <div class="info-scroll">
+      <div class="info-row"><span class="info-label">修改日期：</span>2026/04/22</div>
+      <div class="info-row"><span class="info-label">類型：</span>JPG</div>
+      <div class="info-row"><span class="info-label">大小：</span>466.97KB</div>
+      <div class="info-row">
+        <span class="info-label">路徑：</span>
+        https://www.w3schools.com/css/img_5terre.jpg
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const btnOpen  = document.getElementById('btnOpen');
+  const btnClose = document.getElementById('btnClose');
+  const panel    = document.getElementById('infoPanel');
+
+  btnOpen.addEventListener('click', () => panel.classList.add('open'));
+  btnClose.addEventListener('click', () => panel.classList.remove('open'));
+</script>
+</body>
+</html>
