@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circle Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 60px auto; background: #f0f4f8; }
+    .card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    h2 { color: #333; text-align: center; }
+    label { font-weight: bold; color: #555; }
+    input { width: 100%; padding: 10px; margin: 10px 0 20px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; box-sizing: border-box; }
+    button { width: 100%; padding: 12px; background: #4a90e2; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #357abd; }
+    .result { margin-top: 20px; padding: 16px; background: #eaf3fb; border-radius: 8px; font-size: 16px; color: #333; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>⭕ Circle Calculator</h2>
+    <label for="radius">Enter Radius:</label>
+    <input type="number" id="radius" placeholder="e.g. 5" min="0">
+    <button onclick="calculate()">Calculate</button>
+    <div class="result" id="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    function calcCircumference(radius) {
+      var circumference = 2 * Math.PI * radius;
+      return "The circumference is " + circumference.toFixed(2);
+    }
+
+    function calcArea(radius) {
+      var area = Math.PI * radius * radius;
+      return "The area is " + area.toFixed(2);
+    }
+
+    function calculate() {
+      var radius = parseFloat(document.getElementById('radius').value);
+      if (isNaN(radius) || radius < 0) {
+        alert("Please enter a valid radius.");
+        return;
+      }
+      var resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML =
+        "<p> " + calcCircumference(radius) + "</p>" +
+        "<p>" + calcArea(radius) + "</p>";
+    }
+  </script>
+</body>
+</html>
